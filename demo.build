@@ -1,0 +1,8 @@
+api  = 2
+core = 7.x
+
+projects[drupal] = 7.10
+
+projects[demo][type]           = profile
+projects[demo][download][type] = git
+projects[demo][download][url]  = git@github.com:patcon/demo.git
