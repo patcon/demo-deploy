@@ -7,7 +7,7 @@ set -o errexit
 set -o pipefail
 
 drush make ${PROJECT}.build build/
-cd build/ && drush site-install -y --db-url=mysql://root:${SERVER_ROOT_PASSWORD}@localhost/${PROJECT}
+cd build/ && drush site-install -y ${PROJECT} --db-url=mysql://root:${SERVER_ROOT_PASSWORD}@localhost/${PROJECT}
 
 # Append settings.php snippets
 chmod u+w ${WORKSPACE}/build/sites/default/settings.php
