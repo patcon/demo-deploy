@@ -12,5 +12,5 @@ drush archive-dump --destination=${WORKSPACE}/tmp-dump.tar.gz && \
 mkdir -p fpm
 tar xzf tmp-dump.tar.gz -C fpm/ && \
   cd fpm
-fpm -s dir -t deb -n ${PROJECT} -v ${VERSION} -C ${DESTDIR} -p ${PROJECT}-${VERSION}_${ARCH}.deb
+fpm -s dir -t deb -n ${PROJECT} -v ${VERSION} -C ${DESTDIR} -p ${PROJECT}-VERSION_ARCH.deb
 sudo /usr/bin/reprepro -Vb /srv/apt includedeb ${LSB_CODENAME} ${DESTDIR}/${PROJECT}-${VERSION}_*.deb
