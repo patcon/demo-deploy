@@ -6,7 +6,7 @@ set -o errtrace
 set -o errexit
 set -o pipefail
 
-./0-pin-profile-submodule.sh
+./scripts/1-commit-stage/0-pin-profile-submodule.sh
 
 drush make ${PROJECT}.build build/
 cd build/ && drush site-install -y ${PROJECT} --db-url=mysql://root:${SERVER_ROOT_PASSWORD}@localhost/${PROJECT}
