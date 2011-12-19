@@ -6,4 +6,10 @@ set -o errtrace
 set -o errexit
 set -o pipefail
 
-true
+cd build/
+drush archive-dump --destination=${WORKSPACE}/tmp-dump.tar.gz && \
+  cd ${WORKSPACE}
+mkdir -p fpm
+tar xzf tmp-dump.tar.gz -C fpm/ && \
+  cd fpm
+fpm -s dir -t deb -n ${PROJECT} -v ${VERSION} -C ${DESTDIR} -p ${PROJECT}-VERSION_ARCH.deb
