@@ -12,5 +12,5 @@ drush archive-dump --destination=${WORKSPACE}/tmp-dump.tar.gz && \
 mkdir -p fpm
 tar xzf tmp-dump.tar.gz -C fpm/ && \
   cd fpm
-fpm -s dir -t deb -n ${PROJECT} -v ${VERSION} -C ${DESTDIR} -p ${PROJECT}-VERSION_ARCH.deb
-sudo /usr/bin/reprepro -Vb /srv/apt includedeb ${LSB_CODENAME} ${DESTDIR}/${PROJECT}-${VERSION}_*.deb
+fpm -s dir -t deb -n ${PROJECT} -v ${VERSION} -C ${DESTDIR} -a noarch --post-install=${WORKSPACE}/scripts/1-commit-stage/fpm-packaging/post-install.sh -d "mysql-server (>= 0.0.0)"
+sudo /usr/bin/reprepro -Vb /srv/apt includedeb ${LSB_CODENAME} ${DESTDIR}/${PROJECT}_${VERSION}_*.deb
