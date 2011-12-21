@@ -4,7 +4,7 @@
 set -o nounset
 set -o errtrace
 set -o errexit
-set -o pipefail
+#set -o pipefail
 
 git submodule foreach "git checkout master; git pull origin master"
 git checkout master
