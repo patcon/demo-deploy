@@ -14,10 +14,10 @@ tar xzf tmp-dump.tar.gz -C fpm/ && \
   cd fpm
 
 # reprepro needs to store a package for each os codename we might deploy to
-distros=( lucid natty )
+distros=( lucid )
 for d in "${distros[@]}"
 do
-  fpm -s dir -t deb -n ${PROJECT} -v ${VERSION} -C ${DESTDIR} -p ${PROJECT}_VERSION~${d}1_ARCH.deb \
+  fpm -s dir -t deb -n ${PROJECT} -a all -v ${VERSION} -C ${DESTDIR} -p ${PROJECT}_VERSION~${d}1_ARCH.deb --prefix=/srv/${project} \
     --post-install=${WORKSPACE}/scripts/1-commit-stage/fpm-packaging/post-install.sh -d "mysql-server (>= 0.0.0)"
   sudo /usr/bin/reprepro -Vb /srv/apt includedeb ${d} ${DESTDIR}/${PROJECT}_${VERSION}~${d}1_*.deb
 done
